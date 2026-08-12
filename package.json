@@ -1,0 +1,36 @@
+{
+  "name": "mywabot",
+  "version": "1.0.0",
+  "description": "WhatsApp Bot built with Baileys library",
+  "main": "index.js",
+  "author": "fucta or billy",
+  "keywords": [
+    "whatsapp-bot",
+    "baileys",
+    "whatsapp",
+    "bot",
+    "wa-bot",
+    "multi-device",
+    "whatsapp-api",
+    "whatsapp-web"
+  ],
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@neoxr/api": "^1.5.3",
+    "@whiskeysockets/baileys": "^7.0.0-rc14",
+    "axios": "^1.18.1",
+    "brat-canvas": "^1.0.30",
+    "canvas": "^3.2.3",
+    "pino": "^10.3.1",
+    "sharp": "^0.35.3",
+    "tape": "^5.10.2",
+    "wa-sticker-formatter": "^4.4.4"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fucta/MyWaBot"
+  }
+}

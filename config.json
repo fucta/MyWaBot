@@ -1,0 +1,22 @@
+{
+  "name": "Billy Istono",
+  "botName": "MyWaBot",
+  "version": "1.0",
+  "isPublic": true,
+  "owners": [
+    {
+      "id": "6282135667176",
+      "type": "phone"
+    },
+    {
+      "id": "226397037564014",
+      "type": "lid"
+    }
+  ],
+  "apiKeys": {
+    "neoxr": "datacapil2026"
+  },
+  "saweria": "https://saweria.co/m0xy",
+  "sourceUrl": "https://github.com/fucta/MyWaBot",
+  "groupUrl": "https://chat.whatsapp.com/JcwYbgpNgq65Hb8LRMQwJX"
+}
