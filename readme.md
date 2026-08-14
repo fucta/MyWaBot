@@ -35,6 +35,6 @@ npm start
 
 ---------
 
-[![Billy](https://github.com/fucta.png?size=100)](https://github.com/fucta)
+[![Billy](https://github.com/fucta.png?size=100)](https://github.com/fucta) [![Nurutomo](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo)
 
 Powered by Billy
