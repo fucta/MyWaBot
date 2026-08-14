@@ -7,18 +7,27 @@ module.exports = {
     async run({ sock, msg, jid, args, command, prefix }) {
         try {
             const quoted = msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
+            const directImage = msg.message?.imageMessage;
             let imageUrl = args[0]
             let resolusi = args[1] || "16"
 
-            if (!imageUrl && !quoted?.imageMessage) {
-                return sock.sendReply(msg, `_Reply image or send URL with ${prefix + command}_`, msg)
+            if (!imageUrl && !quoted?.imageMessage && !directImage) {
+                return sock.sendReply(msg, `_Reply image, send image with caption, or send URL with ${prefix + command}_`, msg)
             }
 
             let wait = await sock.sendWait(jid, msg)
 
+            let media = null;
+            
             if (quoted?.imageMessage) {
+                media = quoted.imageMessage;
+            } else if (directImage) {
+                media = directImage;
+            }
+
+            if (media) {
                 const stream = await downloadContentFromMessage(
-                    quoted.imageMessage,
+                    media,
                     "image"
                 );
 

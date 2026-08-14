@@ -13,14 +13,23 @@ module.exports = {
         try {
             const quoted =
                 msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
-
-            if (!quoted?.imageMessage) {
-                return sock.sendReply(msg, `_Reply to pics or videos with a ${prefix + command} command._`);
-            }
             
+            const directImage = msg.message?.imageMessage;
+
+            let media = null;
+
+            if (quoted?.imageMessage) {
+                media = quoted.imageMessage;
+            } else if (directImage) {
+                media = directImage;
+            } else {
+                return sock.sendReply(msg, `_Reply to image or send image with caption ${prefix + command}_`);
+            }
+
             let wait = await sock.sendWait(jid, msg)
+
             const stream = await downloadContentFromMessage(
-                quoted.imageMessage,
+                media,
                 "image"
             );
 

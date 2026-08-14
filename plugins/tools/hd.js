@@ -12,20 +12,27 @@ module.exports = {
         try {
             const quoted =
                 msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
-
-            if (!quoted) {
-                return sock.sendReply(msg, `_Reply to an image or video with ${prefix + command} command._`);
-            }
+            
+            const directImage = msg.message?.imageMessage;
+            const directVideo = msg.message?.videoMessage;
 
             if (quoted?.imageMessage) {
-                return await processImage(sock, msg, quoted, jid);
+                return await processImage(sock, msg, quoted.imageMessage, jid);
             }
             
             if (quoted?.videoMessage) {
-                return await processVideo(sock, msg, quoted, jid);
+                return await processVideo(sock, msg, quoted.videoMessage, jid);
             }
 
-            return sock.sendReply(msg, `_Reply to an image or video with ${prefix + command} command._`);
+            if (directImage) {
+                return await processImage(sock, msg, directImage, jid);
+            }
+            
+            if (directVideo) {
+                return await processVideo(sock, msg, directVideo, jid);
+            }
+
+            return sock.sendReply(msg, `_Reply to image/video or send image/video with caption ${prefix + command}_`);
 
         } catch (err) {
             console.log(err);
@@ -34,12 +41,12 @@ module.exports = {
     }
 };
 
-async function processImage(sock, msg, quoted, jid) {
+async function processImage(sock, msg, media, jid) {
     try {
         let wait = await sock.sendWait(jid, msg);
         
         const stream = await downloadContentFromMessage(
-            quoted.imageMessage,
+            media,
             "image"
         );
 
@@ -69,12 +76,12 @@ async function processImage(sock, msg, quoted, jid) {
     }
 }
 
-async function processVideo(sock, msg, quoted, jid) {
+async function processVideo(sock, msg, media, jid) {
     try {
         let wait = await sock.sendWait(jid, msg);
         
         const stream = await downloadContentFromMessage(
-            quoted.videoMessage,
+            media,
             "video"
         );
 

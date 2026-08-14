@@ -13,25 +13,30 @@ module.exports = {
         try {
             const quoted =
                 msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
-
-            if (!quoted) {
-                return sock.sendReply(msg, `_Reply to pics or videos with a ${prefix + command} command._`)
-            }
+            
+            const directImage = msg.message?.imageMessage;
+            const directVideo = msg.message?.videoMessage;
 
             let mediaType = null;
             let media = null;
 
-            if (quoted.imageMessage) {
+            if (quoted?.imageMessage) {
                 mediaType = "image";
                 media = quoted.imageMessage;
-            } else if (quoted.videoMessage) {
+            } else if (quoted?.videoMessage) {
                 mediaType = "video";
                 media = quoted.videoMessage;
+            } else if (directImage) {
+                mediaType = "image";
+                media = directImage;
+            } else if (directVideo) {
+                mediaType = "video";
+                media = directVideo;
             } else {
                 return sock.sendMessage(
                     msg.key.remoteJid,
                     {
-                        text: "Support image or video also."
+                        text: `_Reply to image/video or send image/video with caption ${prefix + command}_`
                     },
                     { quoted: msg }
                 );
@@ -60,6 +65,7 @@ module.exports = {
                     { quoted: msg }
                 );
             }
+
             const wait = await sock.sendWait(msg.key.remoteJid, msg);
 
             const stream = await downloadContentFromMessage(

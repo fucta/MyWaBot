@@ -13,16 +13,23 @@ module.exports = {
     async run({ sock, msg, jid, prefix, command }) {
         try {
             const quoted = msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
+            const directImage = msg.message?.imageMessage;
 
-            if (!quoted?.imageMessage) {
+            let media = null;
+
+            if (quoted?.imageMessage) {
+                media = quoted.imageMessage;
+            } else if (directImage) {
+                media = directImage;
+            } else {
                 return sock.sendReply(
                     msg,
-                    `_Reply to an image with ${prefix + command}._`
+                    `_Reply to image or send image with caption ${prefix + command}_`
                 );
             }
 
             const stream = await downloadContentFromMessage(
-                quoted.imageMessage,
+                media,
                 "image"
             );
 
