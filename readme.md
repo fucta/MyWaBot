@@ -35,6 +35,13 @@ npm start
 
 ---------
 
+[ CHANGELOGS ]
+
+```bash
+- STICKER SUPPORT SEND AND REPLY
+```
+---------
+
 BIG THANKS TO
 
 | [![Fucta](https://github.com/fucta.png?size=100)](https://github.com/fucta) | [![Nurutomo](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo) | [![Ariffb](https://github.com/ariffb25.png?size=100)](https://github.com/ariffb25) |
