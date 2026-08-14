@@ -35,6 +35,17 @@ npm start
 
 ---------
 
-[![Billy](https://github.com/fucta.png?size=100)](https://github.com/fucta) [![Nurutomo](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo)
+[ CHANGELOGS ]
 
-Powered by Billy
+```bash
+- JADIBOT
+- CHATGPT
+```
+
+---------
+
+THANKS TO
+
+[![Billy](https://github.com/fucta.png?size=100)](https://github.com/fucta) [![Nurutomo](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo)
+----|----|----
+[Billy](https://github.com/fucta) | [Nurutomo](https://github.com/Nurutomo)
